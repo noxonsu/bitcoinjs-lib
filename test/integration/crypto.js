@@ -1,10 +1,10 @@
 /* global describe, it */
 
 var assert = require('assert')
-var async = require('async')
 var bigi = require('bigi')
 var bitcoin = require('../../')
 var mainnet = require('./_mainnet')
+var parallel = require('run-parallel')
 var crypto = require('crypto')
 
 var ecurve = require('ecurve')
@@ -72,7 +72,7 @@ describe('bitcoinjs-lib (crypto)', function () {
       })
 
       // finally, run the tasks, then on to the math
-      async.parallel(tasks, function (err) {
+      parallel(tasks, function (err) {
         if (err) throw err
 
         var n = secp256k1.n
